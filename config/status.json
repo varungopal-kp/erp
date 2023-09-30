@@ -1,0 +1,11 @@
+{
+    "active": 1,
+    "inactive": 2,
+    "pending": 3,
+    "componentsIssued": 4,
+    "productReceived": 5,
+    "closed": 6,
+    "released": 7,
+    "planned": 8,
+    "rescheduled": 9
+}

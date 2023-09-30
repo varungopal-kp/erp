@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+
+  <body class="printBody">
+    <% for(var i=0; i< data.length; i++) {%>
+    <div class="eachcard">
+      <p class="barcode"><%= data[i].bundleNumber%></p>
+      <p class="printnum"><%= data[i].bundleNumber%></p>
+      <p class="batch">[Batch No. / Bundle No.]</p>
+      <p class="gishs">
+        <%=data[i].ItemMaster&&trim(data[i].ItemMaster.code +" - "+data[i].ItemMaster.name) %>
+      </p>
+      <p class="bundlepcs">BUNDLE PCS: <%= data[i].numberOfPieces%></p>
+      <p class="date">
+        DATE: <%=data[i].OIVL ? moment(data[i].OIVL.docDate,
+        'YYYY-MM-DD').format('DD-MM-YYYY') : '' %>
+      </p>
+      <p class="coilnum">COIL NO: <%= trim(data[i].coilNo)%></p>
+    </div>
+    <% } %>
+  </body>
+
+  <style type="text/css">
+    .printBody {
+      width: 10cm;
+      height: 15cm;
+      margin: 0cm;
+      padding: 0cm;
+    }
+
+    .eachcard {
+      width: 7cm;
+      height: 6cm;
+      padding-left: 2.5cm;
+      padding-top: 6cm;
+      padding-bottom: 3cm;
+      padding-right: 0.5cm;
+    }
+
+    .barcode {
+      font-size: 1.3cm;
+      line-height: 1.3cm;
+      margin: 0px;
+      margin-bottom: 0.5cm;
+      padding: 0;
+      font-family: "code_128regular";
+      text-align: center;
+    }
+
+    .printnum {
+      font-size: 0.35cm;
+      line-height: 0.35cm;
+      margin: 0cm;
+      padding: 0cm;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .batch {
+      font-size: 0.25cm;
+      line-height: 0.25cm;
+      margin: 0.3cm 0px;
+      margin-bottom: 0.5cm;
+      padding: 0;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 500;
+      text-align: center;
+    }
+
+    .gishs,
+    .bundlepcs,
+    .date,
+    .coilnum {
+      font-size: 0.35cm;
+      line-height: 0.35cm;
+      margin: 0.35cm 0cm;
+      padding: 0;
+      font-family: "Montserrat", sans-serif;
+      font-weight: 600;
+      word-break: break-all;
+    }
+
+    /* latin */
+    @font-face {
+      font-family: "code_128regular";
+      src: url("/api/font/code-128-webfont.woff2") format("woff2"),
+        url("/api/font/code-128-webfont.woff") format("woff");
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    @page {
+      size: 10cm 15cm;
+      margin: 0cm;
+      padding: 0cm;
+    }
+
+    @media print {
+      .printBody {
+        width: 10cm;
+        height: 15cm;
+        margin: 0cm;
+        padding: 0cm;
+      }
+
+      .eachcard {
+        width: 7cm;
+        height: 6cm;
+        padding-left: 2.5cm;
+        padding-top: 6cm;
+        padding-bottom: 3cm;
+        padding-right: 0.5cm;
+      }
+
+      .barcode {
+        font-size: 1.3cm;
+        line-height: 1.3cm;
+        margin: 0px;
+        margin-bottom: 0.5cm;
+        padding: 0;
+        font-family: "code_128regular";
+        text-align: center;
+      }
+
+      .printnum {
+        font-size: 0.35cm;
+        line-height: 0.35cm;
+        margin: 0cm;
+        padding: 0cm;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .batch {
+        font-size: 0.25cm;
+        line-height: 0.25cm;
+        margin: 0.3cm 0px;
+        margin-bottom: 0.5cm;
+        padding: 0;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      .gishs,
+      .bundlepcs,
+      .date,
+      .coilnum {
+        font-size: 0.35cm;
+        line-height: 0.35cm;
+        margin: 0.35cm 0cm;
+        padding: 0;
+        font-family: "Montserrat", sans-serif;
+        font-weight: 600;
+        word-break: break-all;
+      }
+    }
+  </style>
+  <script>
+    window.onload = function () {
+      window.print();
+    };
+
+    window.onafterprint = function () {
+      //  history.back();
+    };
+  </script>
+</html>
